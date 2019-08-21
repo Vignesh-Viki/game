@@ -1,23 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from "styled-components";
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
+import TimerContext from '../context/timer-info';
 
 const Container = styled.div`
   margin-top: 50px;
   font-size: 25px;
-  tex
 `;
 
 const Timer: React.FC = () => {
 
-  const [currentTime, setCurrentTime] = useState(0);
-
+  const usersContext = useContext(TimerContext);
+  const currentTime = usersContext['currentTime'];
+  const setCurrentTime = usersContext['setCurrentTime'];
+  
   useEffect(() => {
-    setTimeout(() => {
-      setCurrentTime(currentTime + 1);
+    setInterval(() => {
+      setCurrentTime(currentTime => (currentTime + 1));
     }, 1000)
-  }, [currentTime]);
+  }, [0]);
   
   return (
     <Container>
